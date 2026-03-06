@@ -8,7 +8,6 @@
 // ============================= DECLARATIONS =============================
 /*! \brief Struct handler for configuring the power watch module for single power stage
 *   \param pin_en       uint with GPIO number for enabling the power modules
-*   \param pin_led      uint with GPIO number for controlling a LED
 *   \param use_pgd      Boolean for enabling power good feedback and monitor
 *   \param pin_pgd      If true, uint with GPIO number for getting power good feedback
 *   \param state        Boolean if power is active and running
@@ -16,7 +15,6 @@
 */
 typedef struct {
     uint8_t pin_en;
-    uint8_t pin_led;
     bool use_pgd;
     uint8_t pin_pgd;
     bool state;

@@ -26,6 +26,13 @@ bool configure_spi_module(spi_rp2_t *handler, bool use_spi_slave){
 }
 
 
+bool update_modulator_frequency(spi_rp2_t *handler, uint16_t frequency_khz){
+    handler->fspi_khz = frequency_khz;
+    spi_set_baudrate(handler->spi_mod, frequency_khz * 1000);
+    return true;
+}
+
+
 int8_t send_data_spi_module(spi_rp2_t *handler, uint8_t gpio_num_csn, uint8_t data_tx[], size_t length){
     gpio_put(gpio_num_csn, false);
     int8_t status = spi_write_blocking(handler->spi_mod, data_tx, length);

@@ -5,8 +5,7 @@
 // ============================== ISR ROUTINES ==============================
 void gpio_isr_pwr_monitor(uint gpio, uint32_t events, power_single_t *config) {
     /* ADD CODE HERE WITH RIGHT STRUCT HANDLER */  
-    disable_system_power(config);
-    gpio_put(config->pin_led, true);   
+    disable_system_power(config); 
     while(true){
         sleep_ms(1000);   
         printf("Power down! Please check!\n");
@@ -58,7 +57,6 @@ bool enable_system_power(power_single_t *config){
     gpio_put(config->pin_en, true);
 
     bool state = false;
-    bool state_led = false;
     if(config->use_pgd){
         state = monitor_system_power_pgd_start(config->pin_pgd, false);
         
@@ -66,8 +64,6 @@ bool enable_system_power(power_single_t *config){
             disable_system_power(config);
         }
         while(!state){
-            gpio_put(config->pin_led, state_led);
-            state_led = !state_led;
             sleep_ms(1000);
         }
     }
