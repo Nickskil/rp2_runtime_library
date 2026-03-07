@@ -8,7 +8,6 @@ target_link_libraries(adc_ad4858 INTERFACE
     pico_stdlib
 	hardware_gpio
     hardware_pwm
-    hardware_spi
     hal_spi
 )
 

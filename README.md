@@ -25,7 +25,7 @@ Further examples can be found in this [repo](https://github.com/analogdevicesinc
 ## Device Libraries
 - [x] ADC ADS8881
 - [x] ADC AD7779
-- [ ] ADC AD4858 
+- [ ] ADC AD4858 (WIP)
 - [x] DAC AD57x4
 - [x] DAC AD5765
 - [x] DAC LTC2668
@@ -40,6 +40,8 @@ Further examples can be found in this [repo](https://github.com/analogdevicesinc
 - [x] Ethernet Module CH9121
 - [x] SD card support
 - [ ] Ethernet module W5500 (WIP)
+- [ ] FPGA Handler + Flashing (SPI 1x, no bus alignment) for AMD, Lattice and CologneChip Gatemate FPGAs (WIP)
+- [ ] Adafruit OLED Display 4400
 
 ## Sensor Libraries
 - [x] Environmeont Sensor: SHT21
