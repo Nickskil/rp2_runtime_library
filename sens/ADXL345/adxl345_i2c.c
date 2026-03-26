@@ -2,6 +2,29 @@
 #include "hardware/gpio.h"
 
 
+// ========================== DEFINITION ==========================
+#define ADXL345_I2C_ADR 0x53
+#define ADXL345_DEVID 	0xE5
+
+#define ADXL345_DATAX0 0x32 // Register for reading the X-Axis data
+#define ADXL345_DATAX1 0x33
+#define ADXL345_DATAY0 0x34 // Register for reading the Y-Axis data
+#define ADXL345_DATAY1 0x35 
+#define ADXL345_DATAZ0 0x36 // Register for reading the Z-Axis data
+#define ADXL345_DATAZ1 0x37
+
+// ADXL345 CONFIGURATION
+#define ADXL345_DATA_FORMAT 	0x31 	// data format control
+#define ADXL345_POWER_CTL 		0x2D 	//  power control
+#define ADXL345_SCALE_FACTOR 	256.0f 	// Scale factor for ±2g (256 LSB/g) 
+
+// ADXL345 CALIBRATION
+#define ADXL345_OFSX 0x1E // Offset for X-Axis
+#define ADXL345_OFSY 0x1F // Offset for Y-Axis
+#define ADXL345_OFSZ 0x20 // Offset for Z-Axis
+#define ADXL345_BW_RATE 0x2C // Bandwidth and rate control
+
+
 // ========================== INTERNAL FUNCTIONS ==========================
 bool ADXL345_i2c_write_byte(adxl345_i2c_rp2_t *handler, uint8_t command, uint8_t data){
     uint8_t buffer_tx[2] = {command};

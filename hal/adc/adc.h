@@ -36,7 +36,7 @@ bool rp2_adc_init(rp2_adc_t* config);
     \param new_channel   New ADC channel to be used
     \return              true if channel change was successful, false otherwise
 */
-bool rp2_change_channel(rp2_adc_t* config, uint8_t new_channel);
+bool rp2_adc_change_channel(rp2_adc_t* config, uint8_t new_channel);
 
 
 /*! \brief Read the raw ADC value from the specified channel
