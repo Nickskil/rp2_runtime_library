@@ -26,13 +26,13 @@ bool rp2_adc_init(rp2_adc_t* config){
 
     adc_init();
     config->init_done = true;
-    rp2_change_channel(config, config->adc_channel);
+    rp2_adc_change_channel(config, config->adc_channel);
 
     return config->init_done;
 }
 
 
-bool rp2_change_channel(rp2_adc_t* config, uint8_t new_channel){
+bool rp2_adc_change_channel(rp2_adc_t* config, uint8_t new_channel){
     if(!config->init_done)
         return false;
 
