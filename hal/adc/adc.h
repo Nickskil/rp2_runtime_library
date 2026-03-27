@@ -13,14 +13,16 @@
 
 
 /*! \brief RP2 ADC structure
-* \param adc_channel      ADC Channel to be used
-* \param vref             Reference Voltage
-* \param scale_factor     Scale factor to be applied to the raw ADC value
-* \param init_done        Initialization done flag
+    \param adc_channel      ADC Channel to be used
+    \param sampling_rate    uint32_t value with sampling rate
+    \param use_dma          Boolean for using DMA controller in streaming application 
+    \param init_done        Initialization done flag
 */
 typedef struct {
-    uint8_t adc_channel;
-    bool    init_done;  
+    uint8_t     adc_channel;
+    uint32_t    sampling_rate;
+    bool        use_dma;
+    bool        init_done;  
 } rp2_adc_t;
 
 
@@ -39,11 +41,38 @@ bool rp2_adc_init(rp2_adc_t* config);
 bool rp2_adc_change_channel(rp2_adc_t* config, uint8_t new_channel);
 
 
-/*! \brief Read the raw ADC value from the specified channel
+/*! \brief Read the raw ADC value as sample from the specified channel
     \param config       Pointer to the RP2 ADC configuration structure
     \return             The raw ADC value as uint16_t but 12-bit are used
 */
 uint16_t rp2_adc_read_raw(rp2_adc_t* config);
+
+
+/*! \brief Function for starting the process to buffer the ADC directly into buffer using Direct Memory Access (DMA)
+    \param config       Pointer to the RP2 ADC configuration structure
+    \return             Boolean if streaming process is started successful
+*/
+bool rp2_adc_start_buffer(rp2_adc_t* config);
+
+
+/*! \brief Function for stopping the process to buffer the ADC directly into buffer using Direct Memory Access (DMA)
+    \param config       Pointer to the RP2 ADC configuration structure
+    \return             Boolean if streaming process is stopped successful
+*/
+bool rp2_adc_stop_buffer(rp2_adc_t* config);
+
+
+/*! \brief Reading the raw ADC data as buffer (polling) from the specified channel
+    \param config       Pointer to the RP2 ADC configuration structure
+    \return             Boolean if buffer is valid for next processing
+*/
+bool rp2_adc_read_buffer_polling(rp2_adc_t* config);
+
+
+/*! \brief Getting the new buffer content
+    \return             uint16_t array with data
+*/
+uint16_t* rp2_adc_get_buffer(void);
 
 
 #endif

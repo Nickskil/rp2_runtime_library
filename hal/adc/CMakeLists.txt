@@ -9,6 +9,7 @@ target_link_libraries(hal_adc INTERFACE
     pico_stdlib
     hardware_pio
     hardware_adc
+    hardware_dma
 )
 
 target_include_directories(hal_adc INTERFACE
