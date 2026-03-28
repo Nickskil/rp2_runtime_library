@@ -36,6 +36,12 @@ typedef struct {
 bool rp2_adc_init(rp2_adc_t* config);
 
 
+/*! \brief Getting the actual running ADC channel
+    \return uint8_t with actual channel;
+*/
+uint8_t rp2_adc_get_current_channel(void);
+
+
 /*! \brief Change the ADC channel
     \param config        Pointer to the RP2 ADC configuration structure
     \param new_channel   New ADC channel to be used

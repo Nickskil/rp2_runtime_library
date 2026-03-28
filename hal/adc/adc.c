@@ -52,6 +52,11 @@ uint8_t get_gpio_rp2_adc_channel(uint8_t channel){
 }
 
 
+uint8_t rp2_adc_get_current_channel(void){
+    return adc_hw->cs & ADC_CS_AINSEL_BITS;
+}
+
+
 bool rp2_adc_init_dma(rp2_adc_t* config){
     adc_fifo_setup(
         true,   // Activating FIFO buffer
