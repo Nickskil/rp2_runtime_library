@@ -9,6 +9,7 @@ static int rp2_dma_channel = 0;
 static dma_channel_config rp2_dma_cfg;
 
 // --- Data buffer
+volatile uint64_t timestamp = 0;
 volatile uint16_t* buffer_a;
 volatile uint16_t* buffer_b;
 
@@ -20,6 +21,7 @@ volatile bool buffer_b_rdy = false;
 // --- IRQ handler
 void rp2_adc_dma_handler(void){
     dma_hw->ints0 = 1u << rp2_dma_channel;
+    timestamp = get_runtime_ms();
 
     if (use_buffer_a) {
         buffer_a_rdy = true;
@@ -176,6 +178,7 @@ bool rp2_adc_read_buffer_polling(rp2_adc_t* config){
         return false;
     
     buffer_a[buffer_idx] = adc_read();
+    timestamp = get_runtime_ms();
 
     if(buffer_idx == config->buffersize-1){
         buffer_a_rdy = true;
@@ -208,4 +211,9 @@ volatile uint16_t* rp2_adc_get_buffer(rp2_adc_t* config) {
 
 size_t rp2_adc_get_buffersize(void){
     return (use_buffer_a) ? sizeof(buffer_a) : sizeof(buffer_b);
+}
+
+
+uint64_t rp2_adc_get_timestamp(void){
+    return timestamp;
 }

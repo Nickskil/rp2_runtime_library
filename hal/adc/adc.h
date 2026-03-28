@@ -90,4 +90,10 @@ volatile uint16_t* rp2_adc_get_buffer(rp2_adc_t* config);
 size_t rp2_adc_get_buffersize(void);
 
 
+/*! \brief Getting the timestamp of the last sample reading in the buffer
+    \return uint64_t with of the timestamp in microseconds
+*/
+uint64_t rp2_adc_get_timestamp(void);
+
+
 #endif
